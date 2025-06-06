@@ -167,3 +167,10 @@ def test_thirteen():
     # [P4 P4 P6 P6]
     expected_output = 6
     assert Solve(matrix, capacity) ==  expected_output
+
+def test_fourteen():
+    matrix = np.matrix([[4,2,3],
+                        [2,2,2]])
+    capacity = 6
+    expected_output = 3
+    assert Solve(matrix, capacity) == expected_output
