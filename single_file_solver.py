@@ -5,8 +5,8 @@ from collections import defaultdict
 from copy import deepcopy
 
 
-def Solve(grid, CAPACITY):
-  ROWS, COLS = len(grid), len(grid[0])
+def Solve(grid:np.ndarray, CAPACITY:int):
+  ROWS, COLS = grid.shape
   TOTAL = ROWS*COLS
   dict_lookup={}
 
@@ -61,8 +61,10 @@ def Solve(grid, CAPACITY):
 
   final_cost = float('inf')
   answer = {}
+  max_len = 0
 
   while heap: 
+    max_len = max(max_len, len(heap))
     curr_cost, (x,y), curr_weight, encoded_curr_allocation, curr_grid = heapq.heappop(heap)
     if encoded_curr_allocation in explored_state:
       continue
@@ -102,13 +104,17 @@ def Solve(grid, CAPACITY):
       next_allocation[next_node] = curr_cluster+1 if reset else curr_cluster
 
       # if next_cost<=best_cost:
+      if next_cost>final_cost:
+        continue
       if np.all(next_grid==0):
         if next_cost<final_cost:
           final_cost = next_cost
           answer = next_allocation
         continue
       else:
-        heapq.heappush(heap, (next_cost, next_node, next_weight, encodeDict(next_allocation), next_grid))
+        next_encoded_allocation = encodeDict(next_allocation)
+        if next_encoded_allocation not in explored_state:
+          heapq.heappush(heap, (next_cost, next_node, next_weight, next_encoded_allocation, next_grid))
     explored_state.add(encoded_curr_allocation)
   print("________________________________________________")
   print(answer)
@@ -116,7 +122,11 @@ def Solve(grid, CAPACITY):
 
 
 if __name__ == '__main__':
-    grid = np.random.randint(1,5,(3,3))
+    # grid = np.random.randint(1,5,(2,3))
+    grid = np.matrix([[2,2,1,1],
+                        [4,4,2,4],
+                        [2,1,1,2],
+                        [3,1,3,3]])
     # grid = np.random.randint(low=1, high=5, size=(2,2))
     print(grid)
     print(Solve(grid=grid, CAPACITY=6))
