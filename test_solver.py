@@ -148,3 +148,22 @@ def test_twelve():
     # [P1,P3,P3]
     expected_output = 3
     assert Solve(matrix, capacity) == expected_output
+
+def test_thirteen():
+    # Grid
+    # [2 2 1 1]
+    # [4 4 2 4]
+    # [2 1 1 2]
+    # [3 1 3 3]
+    matrix = np.matrix([[2,2,1,1],
+                        [4,4,2,4],
+                        [2,1,1,2],
+                        [3,1,3,3]])
+    capacity = 6
+    # Answer
+    # [P1 P1 P1 P1]
+    # [P2 P3 P3 P5]
+    # [P2 P4 P4 P5]
+    # [P4 P4 P6 P6]
+    expected_output = 6
+    assert Solve(matrix, capacity) ==  expected_output

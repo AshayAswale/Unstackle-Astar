@@ -76,3 +76,9 @@ def Solve(grid, CAPACITY):
   print("________________________________________________")
   print(answer)
   return max(answer.values()) if answer.values() else 0
+
+
+if __name__ == '__main__':
+    grid = np.random.randint(low=1, high=5, size=(4,4))
+    print(grid)
+    print(Solve(grid=grid, CAPACITY=6))
