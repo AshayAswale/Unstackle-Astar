@@ -69,7 +69,7 @@ def Solve(grid:np.ndarray, CAPACITY:int):
     if encoded_curr_allocation in explored_state:
       continue
     curr_allocation = decodeDict(encoded_curr_allocation)
-    if curr_cost>final_cost:
+    if curr_cost>=final_cost:
       continue
     
     nodes_to_add = set()
@@ -104,7 +104,7 @@ def Solve(grid:np.ndarray, CAPACITY:int):
       next_allocation[next_node] = curr_cluster+1 if reset else curr_cluster
 
       # if next_cost<=best_cost:
-      if next_cost>final_cost:
+      if next_cost>=final_cost:
         continue
       if np.all(next_grid==0):
         if next_cost<final_cost:
