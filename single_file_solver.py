@@ -146,11 +146,11 @@ def Solve(grid:np.ndarray, CAPACITY:int):
 
 
 if __name__ == '__main__':
-    # grid = np.random.randint(1,5,(2,2))
-    grid = np.matrix([[2,2,1,1],
-                        [4,4,2,4],
-                        [2,1,1,2],
-                        [3,1,3,3]])
+    grid = np.random.randint(1,5,(4,4))
+    # grid = np.matrix([[2,2,1,1],
+    #                     [4,4,2,4],
+    #                     [2,1,1,2],
+    #                     [3,1,3,3]])
     # grid = np.matrix([[1,2],
     #                   [1,2]])
     # grid = np.random.randint(low=1, high=5, size=(2,2))
