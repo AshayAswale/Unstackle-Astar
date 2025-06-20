@@ -3,6 +3,7 @@ import math
 import numpy as np
 from collections import defaultdict
 from copy import deepcopy
+from heuristic import HeuristicSolve
 
 
 def Solve(grid:np.ndarray, CAPACITY:int):
@@ -83,7 +84,7 @@ def Solve(grid:np.ndarray, CAPACITY:int):
     cost = getHeuristicCost(curr_grid, remaining_capacity)
     heapq.heappush(heap, (cost, curr_node, curr_weight, encodeDict({curr_node:1}), curr_grid))
 
-  final_cost = float('inf')
+  final_cost = HeuristicSolve(grid, CAPACITY)
   answer = {}
   max_len = 0
 
@@ -146,7 +147,7 @@ def Solve(grid:np.ndarray, CAPACITY:int):
 
 
 if __name__ == '__main__':
-    grid = np.random.randint(1,5,(4,4))
+    grid = np.random.randint(1,5,(10,10))
     # grid = np.matrix([[2,2,1,1],
     #                     [4,4,2,4],
     #                     [2,1,1,2],
